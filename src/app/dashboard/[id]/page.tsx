@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StatusBadge } from "@/components/StatusBadge";
+import { UpiPaymentDemo } from "@/components/UpiPaymentDemo";
 import { formatCurrency } from "@/lib/loan";
 
 export default async function ApplicationDetailPage({ params }: { params: { id: string } }) {
@@ -54,6 +55,12 @@ export default async function ApplicationDetailPage({ params }: { params: { id: 
           Submitted on {application.createdAt.toLocaleString("en-US")}
         </p>
       </div>
+
+      {application.status === "APPROVED" && (
+        <div className="mt-6">
+          <UpiPaymentDemo applicationId={application.id} amount={application.monthlyPayment} />
+        </div>
+      )}
     </div>
   );
 }

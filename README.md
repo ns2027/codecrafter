@@ -9,6 +9,7 @@ A personal loan application website and app, built with Next.js (App Router), Ty
 - **Loan application app** — a multi-step application form (personal info → employment → loan details → review) that estimates an interest rate and monthly payment, then saves the application.
 - **Dashboard** — authenticated users can see every application they've submitted and drill into its status and details.
 - **Loan calculator** — interactive sliders/inputs for loan amount, rate, and term, with a full month-by-month amortization table.
+- **Demo EMI repayment** — once an application's status is `APPROVED`, the detail page shows a "pay this month's EMI" UPI QR code. This is a UI demo only: the UPI ID/payee are hardcoded placeholders, no real payment gateway is integrated, and "paid" is just a local flag stored in the browser — nothing is verified server-side. Do not point this at a real UPI ID or present it as a real payment flow to real users.
 
 ## Tech stack
 
@@ -43,7 +44,7 @@ src/app/                    Pages (App Router) and API routes
   api/register               Account creation
   api/auth/[...nextauth]     NextAuth handler
   api/applications           Create/list loan applications
-src/components/              Navbar, Footer, LoanCalculator, StatusBadge
+src/components/              Navbar, Footer, LoanCalculator, StatusBadge, UpiPaymentDemo
 src/lib/                     Prisma client, auth config, EMI math, zod schemas
 ```
 
